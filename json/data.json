@@ -1,0 +1,54 @@
+{
+  "Data": [
+{
+  "series":"series1",
+  "data":[
+      {
+          "label":"maninder",
+          "value":500   
+      },
+      {
+          "label":"sanjay",
+          "value":400
+      },
+      {
+          "label":"ajith",
+          "value":300
+      },
+      {
+          "label":"parth",
+          "value":450
+      },
+      {
+          "label":"saurabh",
+          "value":420
+      }
+  ]  
+},
+{
+    "series":"series2",
+    "data":[
+              {
+          "label":"maninder",
+          "value":300   
+      },
+      {
+          "label":"sanjay",
+          "value":200
+      },
+      {
+          "label":"ajith",
+          "value":100
+      },
+      {
+          "label":"parth",
+          "value":50
+      },
+       {
+          "label":"saurabh",
+          "value":120
+      }
+    ]
+}
+  ]
+}
