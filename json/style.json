@@ -4,15 +4,15 @@
             "color": "#000000",
             "fontSize": "11",
             "showAxis": true,
-            "strokeColor": "#999999",
+            "strokeColor": "#000000",
             "weight": "1"
         },
         "categoryAxis": {
-            "color": "#000000",
+            "color": "#ef0101",
             "fontSize": "11",
             "showAxis": true,
-            "strokeColor": "#999999",
-            "weight": "1"
+            "strokeColor": "#000",
+            "weight": "5"
         }
     },
     "SeriesStyles": {
@@ -25,6 +25,7 @@
             "color": "#0000FF"
         }
     },
+
     "legendStyles": {
         "fontFamily": "Arial",
         "fontSize": "11",
@@ -48,5 +49,31 @@
         "vLineStrokecolor": "#cccccc",
         "vLineThickness": "1"
 
-    }
+    },
+        "legendStyles": {
+            "fontFamily": "Arial",
+            "fontSize": "11",
+            "fontStyle": "normal",
+            "fontWeight": "normal"
+        },
+        "chartingAreaStyle": {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#000000",
+            "borderThickness": "0",
+            "chartComponentHeight": 500,
+            "chartComponentIsVisible": true,
+            "chartComponentPositionX": 500,
+            "chartComponentPositionY": 50,
+            "chartComponentWidth": 700
+        },
+        "gridStyle": {
+            "hLineStrokecolor": "#cccccc",
+            "hLineThickness": "1",
+            "isGridlineVisible": true,
+            "vLineStrokecolor": "#cccccc",
+            "vLineThickness": "1"
+
+        }
+        
+
 }

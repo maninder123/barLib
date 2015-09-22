@@ -174,7 +174,9 @@ BarChart.prototype.render = function () {
     that.setActualChartingAreaStyle(that);
     that.renderValueAxis(that);
     that.renderLabelAxis(that);
-    that.renderBarSeries(that);
+            that.renderBarSeries(that);
+            that.renderLegend();
+           
 
 }
 
@@ -201,7 +203,6 @@ BarChart.prototype.chartingAreaStyle = function (that) {
         'position': 'absolute'
     });
 }
-
 
 /*  -------------------------------------------------------------------------   */
 /**
@@ -246,15 +247,22 @@ BarChart.prototype.renderValueAxis = function (that) {
     var valueAxis = d3.svg.axis()
             .scale(that.xScale)
             .orient("bottom");
-            
+
+
 
     that.svg.append("g")
             .attr("class", "valueAxis")
+
+
+    that.svg.append("g")
+            .attr("class", "value Axis")
+
             .attr("transform", "translate(0," + (parseInt(that.height) - parseInt(that.valueAxisStrokeWeight) / 2) + ")")
             .attr("fill", "none")
             .attr("stroke", that.valueAxisStrokeColor)
             .attr("stroke-width", that.valueAxisStrokeWeight)
-            .style("color",that.valueAxisColor)
+
+            .style("color", that.valueAxisColor)
             .call(valueAxis);
 }
 
@@ -277,9 +285,11 @@ BarChart.prototype.renderLabelAxis = function (that) {
             .attr("fill", "none")
             .attr("stroke", that.categoryAxisStrokeColor)
             .attr("stroke-width", that.categoryAxisStrokeWidth)
-            .style("color",that.categoryAxisColor)
+
             .call(categoryAxis)
 }
+
+
 
 /*  -------------------------------------------------------------------------   */
 /**
@@ -320,3 +330,35 @@ BarChart.prototype.renderBarSeries = function (that) {
             })
 
 }
+
+BarChart.prototype.renderLegend = function () {
+    var that = this;
+    var legend = this.svg.selectAll(".legend")
+            .data(this.finalGraphData["Data"])
+
+            .enter()
+            .append("g")
+            .attr("class", "legend")
+            .attr("transform", function (d, i) {
+                return "translate(0," + i * 20 + ")";
+            });
+
+    console.log(legend);
+    legend.append("rect")
+            .attr("x", this.chartingAreaWidth - 300)
+            .attr("width", 15)
+            .attr("height", 15)
+            .style("fill", function (d, i) {
+                return (that.seriesData[i].color);
+            });
+
+    legend.append("text")
+            .attr("x", this.chartingAreaWidth - 280)
+            .attr("y", 5)
+            .attr("dy", ".35em")
+            .style("text-anchor", "start")
+            .text(function (d, i) {
+                return (that.seriesData[i].name);
+            });
+
+};
