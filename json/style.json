@@ -4,15 +4,15 @@
             "color": "#000000",
             "fontSize": "11",
             "showAxis": true,
-            "strokeColor": "#999999",
+            "strokeColor": "#000000",
             "weight": "1"
         },
         "categoryAxis": {
-            "color": "#000000",
+            "color": "#ef0101",
             "fontSize": "11",
             "showAxis": true,
-            "strokeColor": "#999999",
-            "weight": "1"
+            "strokeColor": "#000",
+            "weight": "5"
         }
     },
     "SeriesStyles": {
@@ -37,7 +37,7 @@
             "borderThickness": "0",
             "chartComponentHeight": 500,
             "chartComponentIsVisible": true,
-            "chartComponentPositionX": 50,
+            "chartComponentPositionX": 500,
             "chartComponentPositionY": 50,
             "chartComponentWidth": 700
         },
@@ -49,4 +49,5 @@
             "vLineThickness": "1"
 
         }
+        
 }
