@@ -2,13 +2,138 @@
 <html lang="en">
     <head>
         <title>BarChart</title>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/template.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-        <script src ="js/barChartLib.js" type ="text/javascript"></script>
+        <script src="js/barChartLib.js" type="text/javascript"></script>
+        <script src="js/changeStyle.js" type="text/javascript"></script>
     </head>
     <body>
-        <div class ="chart"></div>
+        <div class="container main-group">
+            <div>
+                <h1>Label Axis</h1>
+                <label>Axis color</label>
+                <input class=" form-control axis-color" type="color" value="#000000">
+                <label>font color</label>
+                <input class="form-control axisfont-color" type="color" value="#000000">
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <label>Font-Size</label>
+                <select class="form-control font_size">
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="24">24</option>
+                    <option value="30">30</option>
+                    <option value="32">32</option>
+                    <option value="36">36</option>
+                </select>
+            </div>
+            <div>
+                <label>Axis Thickness</label>
+                <select class="form-control thickness">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div>
+                <label>Font Family</label>
+                <select class="form-control titlefont-family">
+
+                    <option value="Arial Black, Gadget, sans-serif" > Arial Black, Gadget, sans-serif</option>
+                    <option value="Georgia, serif">Georgia, serif</option>
+                    <option value="Palatino Linotype, Book Antiqua, Palatino, serif">Palatino Linotype, Book Antiqua, Palatino, serif</option>
+                    <option value="Impact, Charcoal, sans-serif">Impact, Charcoal, sans-serif</option>
+                    <option value="Comic Sans MS, cursive, sans-serif">Comic Sans MS", cursive, sans-serif</option>
+                    <option value="Arial Black, Gadget, sans-serif">Arial Black, Gadget, sans-serif</option>
+                    <option value="Lucida Sans Unicode, Lucida Grande, sans-serif">Lucida Sans Unicode, Lucida Grande, sans-serif</option>
+                    <option value="Tahoma, Geneva, sans-serif">Tahoma, Geneva, sans-serif</option>
+                    <option value="Trebuchet MS, Helvetica, sans-serif">Trebuchet MS, Helvetica, sans-serif"</option>
+                    <option value="Verdana, Geneva, sans-serif">Verdana, Geneva, sans-serif</option>
+                    <option value="Courier New, Courier, monospace">Courier New, Courier, monospace</option>
+                    <option value="Lucida Console, Monaco, monospace">Lucida Console, Monaco, monospace</option>
+                    <option value="Times New Roman, Times, serif">Times New Roman, Times, serif</option>
+                </select>     
+            </div>
+            <h1>Value Axis</h1>
+            <div>
+                <label>Axis color</label>
+                <input class="form-control valueaxis-color" type="color" value="#000000">
+            </div>
+            <div>
+                <label>Font color</label>
+                <input class="form-control Font-color" type="color" value="#000000">
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <label>Font-Size</label>
+                <select class="form-control valuefont_size">
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="24">24</option>
+                    <option value="30">30</option>
+                    <option value="32">32</option>
+                    <option value="36">36</option>
+                </select>
+            </div>
+            <div>
+                <label>Axis Thickness</label>
+                <select class="form-control valueaxis-thickness">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div>
+                <label>Font Family</label>
+                <select class="form-control valueAxistitlefont-family">
+
+                    <option value="Arial Black, Gadget, sans-serif" > Arial Black, Gadget, sans-serif</option>
+                    <option value="Georgia, serif">Georgia, serif</option>
+                    <option value="Palatino Linotype, Book Antiqua, Palatino, serif">Palatino Linotype, Book Antiqua, Palatino, serif</option>
+                    <option value="Impact, Charcoal, sans-serif">Impact, Charcoal, sans-serif</option>
+                    <option value="Comic Sans MS, cursive, sans-serif">Comic Sans MS", cursive, sans-serif</option>
+                    <option value="Arial Black, Gadget, sans-serif">Arial Black, Gadget, sans-serif</option>
+                    <option value="Lucida Sans Unicode, Lucida Grande, sans-serif">Lucida Sans Unicode, Lucida Grande, sans-serif</option>
+                    <option value="Tahoma, Geneva, sans-serif">Tahoma, Geneva, sans-serif</option>
+                    <option value="Trebuchet MS, Helvetica, sans-serif">Trebuchet MS, Helvetica, sans-serif"</option>
+                    <option value="Verdana, Geneva, sans-serif">Verdana, Geneva, sans-serif</option>
+                    <option value="Courier New, Courier, monospace">Courier New, Courier, monospace</option>
+                    <option value="Lucida Console, Monaco, monospace">Lucida Console, Monaco, monospace</option>
+                    <option value="Times New Roman, Times, serif">Times New Roman, Times, serif</option>
+                </select>     
+            
+            <div class ="chart"></div>
+        </div>
     </body>
 </html>

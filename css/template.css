@@ -1,10 +1,10 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 18 Sep, 2015, 9:49:38 PM
-    Author     : ahextech
-*/
-
+.axis-color,.axisfont-color,.Font-color,.font_size,.series1-color,.series2-color,.valueAxistitlefont-family,.valueaxis-color,.valueaxis-thickness,.valuefont_size,.thickness,.titlefont-family{
+    width: 80px;
+    margin:10px;
+}
+.main-group{
+    border: 1px solid #23527c;
+    margin: 20px;
+    width:500px;
+    
+}
