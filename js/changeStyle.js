@@ -1,6 +1,7 @@
 $(document).ready(function () {
     labelAxisStyle();
-
+    valueAxisStyle();
+GridAxisStyle();
 });
 
 //Method to change the style of Label Axis//
@@ -22,7 +23,7 @@ function labelAxisStyle() {
     $('.titlefont-family').change(function () {
         $('.labelAxis').css({'font-family': $(this).val() + ''});
     });
-    valueAxisStyle();
+
 }
 ;
 
@@ -30,6 +31,7 @@ function labelAxisStyle() {
 
 function valueAxisStyle() {
     $(".valuefont_size").change(function () {
+
         $(".valueAxis text").css({'font-size': $(this).val() + 'px'});
     });
     $(".Font-color").change(function () {
@@ -44,6 +46,10 @@ function valueAxisStyle() {
     $('.valueAxistitlefont-family').change(function () {
         $('.valueAxis').css({'font-family': $(this).val() + ''});
     });
-
 }
 ;
+function GridAxisStyle(){
+    $(".grid-thickness").change(function(){
+        $(".tick line").css({'opacity':$(this).val()+''});
+    });
+}

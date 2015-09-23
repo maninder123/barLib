@@ -174,9 +174,9 @@ BarChart.prototype.render = function () {
     that.setActualChartingAreaStyle(that);
     that.renderValueAxis(that);
     that.renderLabelAxis(that);
-            that.renderBarSeries(that);
-            that.renderLegend();
-           
+    that.renderBarSeries(that);
+
+    that.renderLegend()
 
 }
 
@@ -246,22 +246,20 @@ BarChart.prototype.renderValueAxis = function (that) {
 
     var valueAxis = d3.svg.axis()
             .scale(that.xScale)
-            .orient("bottom");
-
-
-
+            .orient("bottom")
+    .innerTickSize(-that.actualChartingAreaWidth)
+    .outerTickSize(10)
+    .tickPadding(10);
+    
     that.svg.append("g")
             .attr("class", "valueAxis")
 
-
     that.svg.append("g")
-            .attr("class", "value Axis")
-
+            .attr("class", "valueAxis")
             .attr("transform", "translate(0," + (parseInt(that.height) - parseInt(that.valueAxisStrokeWeight) / 2) + ")")
             .attr("fill", "none")
             .attr("stroke", that.valueAxisStrokeColor)
             .attr("stroke-width", that.valueAxisStrokeWeight)
-
             .style("color", that.valueAxisColor)
             .call(valueAxis);
 }
@@ -279,14 +277,16 @@ BarChart.prototype.renderLabelAxis = function (that) {
     var categoryAxis = d3.svg.axis()
             .scale(that.yScale)
             .orient("left")
-
+            .innerTickSize(-that.actualChartingAreaHeight)
+            .outerTickSize(10)
+            .tickPadding(10);
     that.svg.append("g")
             .attr("class", "labelAxis")
             .attr("fill", "none")
             .attr("stroke", that.categoryAxisStrokeColor)
             .attr("stroke-width", that.categoryAxisStrokeWidth)
-
-            .call(categoryAxis)
+            .style("color", that.categoryAxisColor)
+            .call(categoryAxis);
 }
 
 
@@ -302,8 +302,22 @@ BarChart.prototype.renderLabelAxis = function (that) {
  */
 BarChart.prototype.renderBarSeries = function (that) {
     var seriesSection = that.svg.selectAll("g.seriesGroup").data(that.finalGraphData["Data"])
-            .enter().append("svg:g").attr("class", "sereiesGroup");
+            .enter().append("svg:g").attr("class", function (d) {
+        console.log(d.series);
+        return d.series;
 
+    });
+    var tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-10, 0])
+            .html(function (d, i, j) {
+                var val = Math.floor(j / that.finalGraphData["Data"][0]['data'].length);
+
+                return "<strong>Series:</strong> <span style='color:green'>" + that.seriesData[val].name + "</span>";
+
+            });
+
+    seriesSection.call(tip);
     var section = seriesSection.selectAll("g.section").data(function (d, i) {
         return d.data;
     }).enter().append("svg:g").attr("transform", function (d, i) {
@@ -328,8 +342,21 @@ BarChart.prototype.renderBarSeries = function (that) {
                 var j = Math.floor(j / (that.finalGraphData["Data"][0].data).length);
                 return that.barScale(j);
             })
-
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide)
 }
+;
+
+
+/**  -------------------------------------------------------------------------   **/
+/**
+ * Method used to render legends.
+ *
+ * @version   0.0.1
+ * @since     0.0.1
+ * @access    public
+ * @author    
+ */
 
 BarChart.prototype.renderLegend = function () {
     var that = this;
@@ -343,7 +370,7 @@ BarChart.prototype.renderLegend = function () {
                 return "translate(0," + i * 20 + ")";
             });
 
-    console.log(legend);
+
     legend.append("rect")
             .attr("x", this.chartingAreaWidth - 300)
             .attr("width", 15)
