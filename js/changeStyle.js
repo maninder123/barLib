@@ -1,7 +1,8 @@
 $(document).ready(function () {
     labelAxisStyle();
     valueAxisStyle();
-GridAxisStyle();
+    GridAxisStyle();
+    BarColorStyle();
 });
 
 //Method to change the style of Label Axis//
@@ -48,8 +49,46 @@ function valueAxisStyle() {
     });
 }
 ;
-function GridAxisStyle(){
-    $(".grid-thickness").change(function(){
-        $(".tick line").css({'opacity':$(this).val()+''});
+//Method for styling Grid//   
+
+function GridAxisStyle() {
+    $(".grid-thickness").change(function () {
+        $(".tick line").css({'opacity': $(this).val() + ''});
     });
 }
+;
+//Method for styling the bar//
+
+function BarColorStyle() {
+
+    $.getJSON("json/data.json", function (data) {
+        $.each(data.Data, function (d, i) {
+            con = '<option value=' + data.Data[d].series + '>' + data.Data[d].series + '</option>';
+            $(".series-color").append(con);
+            $(".series-color").change(function () {
+                option = $(this).find('option:selected').val();
+
+            });
+            $(".bar-color").change(function () {
+                $("." + option, "").children("g").css({'fill': $(this).val() + ''});
+            });
+        });
+    });
+}
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

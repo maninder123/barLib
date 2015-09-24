@@ -48,7 +48,7 @@ getDataAndStyles();
 function BarChart(chartInitParams) {
     this.parsedData = chartInitParams.Data;
     this.parsedStyle = chartInitParams.Style;
-    this.padding = {left: 80, right: 40, top: 20, bottom: 30}
+    this.padding = {left: 180, right: 40, top: 0, bottom: 50}
 
 
     //Defining styles for value axis
@@ -137,8 +137,8 @@ BarChart.prototype.spliceData = function () {
     that.actualChartingAreaHeight = that.chartingAreaHeight;
 
     /*  calculate the svg height and width  */
-    that.width = that.actualChartingAreaWidth - that.padding.left - that.padding.right;
-    that.height = that.actualChartingAreaHeight - that.padding.top - that.padding.bottom;
+    that.width = that.actualChartingAreaWidth - that.padding.right;
+    that.height = that.actualChartingAreaHeight - that.padding.bottom;
     /*  defining the scale for x-axis  */
     that.xScale = d3.scale.linear();
 
@@ -248,7 +248,7 @@ BarChart.prototype.renderValueAxis = function (that) {
             .scale(that.xScale)
             .orient("bottom")
     .innerTickSize(-that.actualChartingAreaWidth)
-    .outerTickSize(10)
+    .outerTickSize(0)
     .tickPadding(10);
     
     that.svg.append("g")
@@ -277,8 +277,8 @@ BarChart.prototype.renderLabelAxis = function (that) {
     var categoryAxis = d3.svg.axis()
             .scale(that.yScale)
             .orient("left")
-            .innerTickSize(-that.actualChartingAreaHeight)
-            .outerTickSize(10)
+            .innerTickSize(-that.chartingAreaHeight)
+            .outerTickSize(0)
             .tickPadding(10);
     that.svg.append("g")
             .attr("class", "labelAxis")
@@ -303,8 +303,7 @@ BarChart.prototype.renderLabelAxis = function (that) {
 BarChart.prototype.renderBarSeries = function (that) {
     var seriesSection = that.svg.selectAll("g.seriesGroup").data(that.finalGraphData["Data"])
             .enter().append("svg:g").attr("class", function (d) {
-        console.log(d.series);
-        return d.series;
+            return d.series;
 
     });
     var tip = d3.tip()
