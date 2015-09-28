@@ -67,10 +67,9 @@ function BarColorStyle() {
             $(".series-color").append(con);
             $(".series-color").change(function () {
                 option = $(this).find('option:selected').val();
-
             });
             $(".bar-color").change(function () {
-                $("." + option, "").children("g").css({'fill': $(this).val() + ''});
+                $("." +option, "").children("g").css({'fill': $(this).val() + ''});
             });
         });
     });

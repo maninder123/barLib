@@ -8,13 +8,16 @@
     width:500px;
     
 }
-.d3-tip {
+.d3-tip,.n {
   line-height: 1;
   font-weight: bold;
   padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  /* background: rgba(0, 0, 0, 0.8); */
+  /* color: #fff; */
   border-radius: 2px;
+  border: 1px solid #245269;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -mox-box-shadow: 4px 4px 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* Creates a small triangle extender for the tooltip */
@@ -24,10 +27,11 @@
   font-size: 10px;
   width: 100%;
   line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
+  color: #f9f9f9;
   content: "\25BC";
   position: absolute;
   text-align: center;
+ 
 }
 
 /* Style northward tooltips differently */

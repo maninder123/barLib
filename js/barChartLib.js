@@ -247,10 +247,10 @@ BarChart.prototype.renderValueAxis = function (that) {
     var valueAxis = d3.svg.axis()
             .scale(that.xScale)
             .orient("bottom")
-    .innerTickSize(-that.actualChartingAreaWidth)
-    .outerTickSize(0)
-    .tickPadding(10);
-    
+            .innerTickSize(-that.actualChartingAreaWidth)
+            .outerTickSize(0)
+            .tickPadding(10);
+
     that.svg.append("g")
             .attr("class", "valueAxis")
 
@@ -303,16 +303,14 @@ BarChart.prototype.renderLabelAxis = function (that) {
 BarChart.prototype.renderBarSeries = function (that) {
     var seriesSection = that.svg.selectAll("g.seriesGroup").data(that.finalGraphData["Data"])
             .enter().append("svg:g").attr("class", function (d) {
-            return d.series;
+        return d.series;
 
     });
     var tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
-            .html(function (d, i, j) {
-                var val = Math.floor(j / that.finalGraphData["Data"][0]['data'].length);
-
-                return "<strong>Series:</strong> <span style='color:green'>" + that.seriesData[val].name + "</span>";
+            .html(function (d, i, j) {      
+               return "<strong></strong> <span style='color:blue'>" + d.value + "</span>";
 
             });
 
@@ -342,7 +340,14 @@ BarChart.prototype.renderBarSeries = function (that) {
                 return that.barScale(j);
             })
             .on('mouseover', tip.show)
-            .on('mouseout', tip.hide)
+            .on('mouseout',function(){
+                 d3.select(".d3-tip")
+          .transition()
+          .delay(200)
+          .duration(500)
+          .style("opacity",0);
+                tip.hide;
+            });
 }
 ;
 
@@ -361,15 +366,12 @@ BarChart.prototype.renderLegend = function () {
     var that = this;
     var legend = this.svg.selectAll(".legend")
             .data(this.finalGraphData["Data"])
-
             .enter()
             .append("g")
             .attr("class", "legend")
             .attr("transform", function (d, i) {
                 return "translate(0," + i * 20 + ")";
             });
-
-
     legend.append("rect")
             .attr("x", this.chartingAreaWidth - 300)
             .attr("width", 15)
@@ -377,7 +379,6 @@ BarChart.prototype.renderLegend = function () {
             .style("fill", function (d, i) {
                 return (that.seriesData[i].color);
             });
-
     legend.append("text")
             .attr("x", this.chartingAreaWidth - 280)
             .attr("y", 5)
