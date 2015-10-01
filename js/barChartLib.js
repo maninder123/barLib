@@ -48,7 +48,7 @@ getDataAndStyles();
 function BarChart(chartInitParams) {
     this.parsedData = chartInitParams.Data;
     this.parsedStyle = chartInitParams.Style;
-    this.padding = {left: 180, right: 40, top: 0, bottom: 50}
+    this.padding = {left: 120, right: 40, top: 15, bottom: 50}
 
 
     //Defining styles for value axis
@@ -58,7 +58,7 @@ function BarChart(chartInitParams) {
     this.valueAxisShowAxis = valueAxisStyle.showAxis;
     this.valueAxisStrokeColor = valueAxisStyle.strokeColor;
     this.valueAxisStrokeWeight = valueAxisStyle.weight;
-
+    this.valueAxistittle = valueAxisStyle.tittle;
     //Defining styles for category axis
     var categoryAxisStyle = this.parsedStyle.Axis.categoryAxis;
     this.categoryAxisColor = categoryAxisStyle.color;
@@ -66,7 +66,7 @@ function BarChart(chartInitParams) {
     this.categoryAxisShowAxis = categoryAxisStyle.showAxis;
     this.categoryAxisStrokeColor = categoryAxisStyle.strokeColor;
     this.categoryAxisStrokeWeight = categoryAxisStyle.weight;
-
+    this.categoryAxistittle = categoryAxisStyle.tittle;
     //Defining seriesData Styles
     this.seriesData = this.parsedStyle.SeriesStyles;
 
@@ -232,7 +232,9 @@ BarChart.prototype.setActualChartingAreaStyle = function (that) {
             .style("padding-left", that.padding.left + 'px');
 }
 
-
+$('.axis-style').on('changeColor.colorpicker', function (event) {    // to change the color of the axis.  
+    $("path").css({'stroke': event.color.toHex()});
+});
 /*  -------------------------------------------------------------------------   */
 /**
  * Method used to value axis.
@@ -249,7 +251,7 @@ BarChart.prototype.renderValueAxis = function (that) {
             .orient("bottom")
             .innerTickSize(-that.actualChartingAreaWidth)
             .outerTickSize(0)
-            .tickPadding(10);
+            .tickPadding(5);
 
     that.svg.append("g")
             .attr("class", "valueAxis")
@@ -261,7 +263,17 @@ BarChart.prototype.renderValueAxis = function (that) {
             .attr("stroke", that.valueAxisStrokeColor)
             .attr("stroke-width", that.valueAxisStrokeWeight)
             .style("color", that.valueAxisColor)
-            .call(valueAxis);
+            .call(valueAxis)
+            .append("text")
+            .attr("class", "xaxis-title")
+            .attr("x", that.actualChartingAreaWidth / 2 - 80)
+            .attr("y", that.actualChartingAreaHeight / 10 - 20)
+            .style("text-anchor", "middle")
+            .style("stroke", "green")
+            .text(that.valueAxistittle);
+
+
+
 }
 
 /*  -------------------------------------------------------------------------   */
@@ -286,7 +298,16 @@ BarChart.prototype.renderLabelAxis = function (that) {
             .attr("stroke", that.categoryAxisStrokeColor)
             .attr("stroke-width", that.categoryAxisStrokeWidth)
             .style("color", that.categoryAxisColor)
-            .call(categoryAxis);
+            .call(categoryAxis)
+            .append("text")
+            .attr("class", "yaxis-title")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - that.padding.left+40)
+            .attr("x", 0 - (that.actualChartingAreaHeight / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .style("stroke", "green")
+            .text(that.categoryAxistittle);
 }
 
 
@@ -309,8 +330,8 @@ BarChart.prototype.renderBarSeries = function (that) {
     var tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
-            .html(function (d, i, j) {      
-               return "<strong></strong> <span style='color:blue'>" + d.value + "</span>";
+            .html(function (d, i, j) {
+                return "<strong></strong> <span style='color:blue'>" + d.value + "</span>";
 
             });
 
@@ -340,12 +361,12 @@ BarChart.prototype.renderBarSeries = function (that) {
                 return that.barScale(j);
             })
             .on('mouseover', tip.show)
-            .on('mouseout',function(){
-                 d3.select(".d3-tip")
-          .transition()
-          .delay(200)
-          .duration(500)
-          .style("opacity",0);
+            .on('mouseout', function () {
+                d3.select(".d3-tip")
+                        .transition()
+                        .delay(200)
+                        .duration(500)
+                        .style("opacity", 0);
                 tip.hide;
             });
 }
@@ -373,15 +394,16 @@ BarChart.prototype.renderLegend = function () {
                 return "translate(0," + i * 20 + ")";
             });
     legend.append("rect")
-            .attr("x", this.chartingAreaWidth - 300)
+            .attr("x", this.chartingAreaWidth - 220)
+            .attr("y", -15)
             .attr("width", 15)
             .attr("height", 15)
             .style("fill", function (d, i) {
                 return (that.seriesData[i].color);
             });
     legend.append("text")
-            .attr("x", this.chartingAreaWidth - 280)
-            .attr("y", 5)
+            .attr("x", this.chartingAreaWidth - 200)
+            .attr("y", -10)
             .attr("dy", ".35em")
             .style("text-anchor", "start")
             .text(function (d, i) {

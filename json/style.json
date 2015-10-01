@@ -5,14 +5,16 @@
             "fontSize": "11",
             "showAxis": true,
             "strokeColor": "#999999",
-            "weight": "1"
+            "weight": "1",
+            "tittle":"salary"
         },
         "categoryAxis": {
             "color": "#000000",
             "fontSize": "11",
             "showAxis": true,
             "strokeColor": "#999999",
-            "weight": "1"
+            "weight": "1",
+            "tittle":"Name"
         }
     },
     "SeriesStyles": {
@@ -39,7 +41,7 @@
         "chartComponentHeight": 500,
         "chartComponentIsVisible": true,
         "chartComponentPositionX": 600,
-        "chartComponentPositionY": 50,
+        "chartComponentPositionY": 100,
         "chartComponentWidth": 700
     },
     "gridStyle": {

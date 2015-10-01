@@ -3,50 +3,48 @@ $(document).ready(function () {
     valueAxisStyle();
     GridAxisStyle();
     BarColorStyle();
+    legendStyle();
+
+    $('.axis-style').on('changeColor.colorpicker', function (event) {    // to change the color of the axis.  
+        $("path").css({'stroke': event.color.toHex()});
+    });
+    $('.module-color').on('changeColor.colorpicker', function (event) {    // to change the color of the axis.  
+        $(".actualChartPane").css({'background-color': event.color.toHex()});
+    });
 });
 
 //Method to change the style of Label Axis//
 
 function labelAxisStyle() {
-    $(".font_size").change(function () {
-        $(".labelAxis text").css({'font-size': $(this).val() + 'px'});
+    
+    $(document).on("click", ".y-off", function () {
+        $(".labelAxis").hide();
     });
-    $(".axisfont-color").change(function () {
-        $(".labelAxis text").css({'stroke': $(this).val() + ''});
+    $(document).on("click", ".y-on", function () {
+        $(".labelAxis").show();
     });
-
-    $(".thickness").change(function () {
-        $(".labelAxis path").css({'stroke-width': $(this).val() + 'px'});
-    });
-    $(".axis-color").change(function () {
-        $(".labelAxis path").css({'stroke': $(this).val() + ''});
-    });
-    $('.titlefont-family').change(function () {
-        $('.labelAxis').css({'font-family': $(this).val() + ''});
-    });
-
+   $(".y-tittle").keyup(function(){
+     var yt=$(".y-tittle").val();
+     $('.yaxis-title').html(yt);
+ }) ;   
 }
 ;
 
 //Method to change the style of value Axis//
 
 function valueAxisStyle() {
-    $(".valuefont_size").change(function () {
+    
+    $(document).on("click", ".x-off", function () {
+        $(".valueAxis").hide();
+    });
+    $(document).on("click", ".x-on", function () {
+        $(".valueAxis").show();
+    });
+ $(".x-tittle").keyup(function(){
+     var xt=$(".x-tittle").val();
+     $('.xaxis-title').html(xt);
+ }) ;  
 
-        $(".valueAxis text").css({'font-size': $(this).val() + 'px'});
-    });
-    $(".Font-color").change(function () {
-        $(".valueAxis text").css({'stroke': $(this).val() + ''});
-    });
-    $(".valueaxis-thickness").change(function () {
-        $(".valueAxis path").css({'stroke-width': $(this).val() + 'px'});
-    });
-    $(".valueaxis-color").change(function () {
-        $(".valueAxis path").css({'stroke': $(this).val() + ''});
-    });
-    $('.valueAxistitlefont-family').change(function () {
-        $('.valueAxis').css({'font-family': $(this).val() + ''});
-    });
 }
 ;
 //Method for styling Grid//   
@@ -54,6 +52,12 @@ function valueAxisStyle() {
 function GridAxisStyle() {
     $(".grid-thickness").change(function () {
         $(".tick line").css({'opacity': $(this).val() + ''});
+    });
+    $(document).on("click", ".grid-off", function () {
+        $(".tick line").hide();
+    });
+    $(document).on("click", ".grid-on", function () {
+        $(".tick line").show();
     });
 }
 ;
@@ -69,13 +73,21 @@ function BarColorStyle() {
                 option = $(this).find('option:selected').val();
             });
             $(".bar-color").change(function () {
-                $("." +option, "").children("g").css({'fill': $(this).val() + ''});
+                $("." + option, "").children("g").css({'fill': $(this).val() + ''});
             });
         });
     });
 }
 ;
-
+function legendStyle() {
+    $(document).on("click", ".off", function () {
+        $('.legend').hide();
+    });
+    $(document).on("click", ".on", function () {
+        $('.legend').show();
+    });
+}
+;
 
 
 
