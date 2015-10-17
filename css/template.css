@@ -1,4 +1,4 @@
-.axis-color,.axisfont-color,.Font-color,.font_size,.series1-color,.series2-color,.valueAxistitlefont-family,.valueaxis-color,.valueaxis-thickness,.valuefont_size,.thickness,.titlefont-family,.grid-thickness,.series-color,.bar-color{
+.axis-color,.axisfont-color,.Font-color,.font_size,.series1-color,.series2-color,.valueAxistitlefont-family,.valueaxis-color,.valueaxis-thickness,.valuefont_size,.thickness,.titlefont-family,.grid-thickness,.series-color,.bar-color,.scale-selection{
     width: 250px;
     margin:10px;
 }
@@ -39,14 +39,35 @@
 .d3-tip.n:after {
   margin: -1px 0 0 0;
   top: 100%;
-  left: 0;
+  left: 10px;
 }
 .tick text{
-    font-size: 16px;
+    font-size: 11px;
   }
 
   .tick line{
     opacity: 0.6;
   }
-  
-  
+  .selection-group{
+      margin: 10px;
+  }  
+  .legendContainer .series.active{
+    opacity:0.3 !important;
+}
+.data-table{
+    margin-left: 40px;
+}
+#tooltip {
+    position: absolute;
+    color: black;
+    width: 100px;
+    height: auto;
+    padding: 10px;
+    background-color:white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -mox-box-shadow: 4px 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rbga(0, 0, 0, 0.4) pointer-events none;
+}
